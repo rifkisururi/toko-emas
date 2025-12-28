@@ -91,7 +91,7 @@ export default function ProductSimulationPanel({ product, settings }: Props) {
               {formatRupiah(summary.acquisitionPrice)}
             </span>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="hidden items-center justify-between">
             <span>Margin</span>
             <span className="font-semibold text-ink">
               {settings.marginAnnual * 100}% · {formatRupiah(summary.marginTotal)}
