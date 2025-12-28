@@ -1,0 +1,13 @@
+node_modules/
+/.next/
+.next/*
+.next/*/*
+.next/**
+.env
+.env.local
+.env.*.local
+*.log
+*.cache
+*.tmp
+dist/
+out/

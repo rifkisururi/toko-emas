@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --gold: #d4af37;
+  --emerald: #10b981;
+  --ink: #0f172a;
+  --sand: #f8f5ef;
+}
+
+body {
+  @apply bg-sand text-ink antialiased;
+  font-family: "Cormorant Garamond", "Playfair Display", "Times New Roman", serif;
+}
+
+.font-sans {
+  font-family: "Manrope", "Segoe UI", sans-serif;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+}
+
+.grid-bg {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
