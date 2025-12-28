@@ -4,8 +4,9 @@ import { requireAdmin } from "@/lib/auth";
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const auth = await requireAdmin(request);
   if (auth.error) return auth.error;
 
@@ -14,7 +15,7 @@ export async function PUT(
   const { data, error } = await supabaseServer
     .from("products")
     .update(productData)
-    .eq("id", params.id)
+    .eq("id", id)
     .select("*")
     .single();
 
@@ -24,7 +25,7 @@ export async function PUT(
 
   if (typeof stock === "number") {
     const { error: stockError } = await supabaseServer.from("stocks").insert({
-      product_id: params.id,
+      product_id: id,
       available: stock,
       mutation_note: "Manual update"
     });
@@ -38,15 +39,16 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const auth = await requireAdmin(request);
   if (auth.error) return auth.error;
 
   const { error } = await supabaseServer
     .from("products")
     .delete()
-    .eq("id", params.id);
+    .eq("id", id);
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 400 });
