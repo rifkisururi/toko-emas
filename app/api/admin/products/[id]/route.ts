@@ -2,11 +2,10 @@ import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase/server";
 import { requireAdmin } from "@/lib/auth";
 
-type Params = {
-  params: { id: string };
-};
-
-export async function PUT(request: Request, { params }: Params) {
+export async function PUT(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
   const auth = await requireAdmin(request);
   if (auth.error) return auth.error;
 
@@ -37,7 +36,10 @@ export async function PUT(request: Request, { params }: Params) {
   return NextResponse.json({ data });
 }
 
-export async function DELETE(request: Request, { params }: Params) {
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
   const auth = await requireAdmin(request);
   if (auth.error) return auth.error;
 
