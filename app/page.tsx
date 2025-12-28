@@ -3,6 +3,8 @@ import PriceTicker from "./components/PriceTicker";
 import ProductCard from "./components/ProductCard";
 import { getProducts } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 const getBrandPrice = (products: { brand: string; price: number; weight: number }[], brand: string) => {
   const items = products.filter((item) => item.brand === brand);
   if (items.length === 0) return 0;
